@@ -41,7 +41,7 @@ lib/train/admin/local.py  # paths about training
 lib/test/evaluation/local.py  # paths about testing
 ```
 ### Training
-Dowmload the pretrained [Stark-s model](https://drive.google.com/drive/folders/1ttafo0O5S9DXK2PX0YqPvPrQ-HWJjhSy?usp=sharing)
+Dowmload the pretrained [Stark-s model](https://drive.google.com/drive/folders/142sMjoT5wT6CuRiFT5LLejgr7VLKmaC4)
 and put it under ./pretrained_models/.
 Set the MODEL.PRETRAINED path in ./experiments/spt/rgbd1k.yaml
 
