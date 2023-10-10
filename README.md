@@ -50,6 +50,10 @@ Training with multiple GPUs using DDP (4 RTX3090Ti with batch size of 16)
 export PYTHONPATH=/path/to/SPT:$PYTHONPATH
 python -m torch.distributed.launch --nproc_per_node=4 ./lib/train/run_training.py  
 ```
+or using single GPU:
+```
+python ./lib/train/run_training.py  
+```
 
 ### Test
 Edit ./lib/test/evaluation/local.py to set the test set path, then run
