@@ -4,7 +4,7 @@ from .data import Sequence, BaseDataset, SequenceList
 
 class DepthTrackDataset(BaseDataset):
     """
-    CDTB, RGB dataset, Depth dataset, Colormap dataset, RGB+depth
+    DepthTrack dataset
     """
     def __init__(self, dtype='colormap'):
         super().__init__()
@@ -19,13 +19,6 @@ class DepthTrackDataset(BaseDataset):
         sequence_path = sequence_name
         nz = 8
         start_frame = 1
-
-        if self.dtype == 'color':
-            ext = 'jpg'
-        elif self.dtype in ['rgbd', 'rgbrawd']:
-            ext = ['jpg', 'png']
-        else:
-            ext = 'png'
 
         anno_path = '{}/{}/groundtruth.txt'.format(self.base_path, sequence_name)
         try:
