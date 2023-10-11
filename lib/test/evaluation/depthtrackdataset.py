@@ -35,29 +35,18 @@ class DepthTrackDataset(BaseDataset):
 
         end_frame = ground_truth_rect.shape[0]
 
-        if self.dtype in ['colormap', 'normalized_depth', 'raw_depth', 'centered_colormap', 'centered_normalized_depth', 'centered_raw_depth']:
-            group = 'depth'
-        elif self.dtype == 'color':
-            group = self.dtype
-        else:
-            group = self.dtype
+        color_frames = ['{base_path}/{sequence_path}/color/{frame:0{nz}}.jpg'.format(base_path=self.base_path,
+                                                                                     sequence_path=sequence_path,
+                                                                                     frame=frame_num, nz=nz)
+                        for frame_num in range(start_frame, end_frame + 1)]
 
-        if self.dtype in ['rgbd', 'rgbcolormap', 'rgbrawd']:
-            depth_frames = ['{base_path}/{sequence_path}/depth/{frame:0{nz}}.png'.format(base_path=self.base_path,
+        depth_frames = ['{base_path}/{sequence_path}/depth/{frame:0{nz}}.png'.format(base_path=self.base_path,
                             sequence_path=sequence_path, frame=frame_num, nz=nz)
                             for frame_num in range(start_frame, end_frame+1)]
-            color_frames = ['{base_path}/{sequence_path}/color/{frame:0{nz}}.jpg'.format(base_path=self.base_path,
-                            sequence_path=sequence_path, frame=frame_num, nz=nz)
-                            for frame_num in range(start_frame, end_frame+1)]
-            # frames = {'color': color_frames, 'depth': depth_frames}
-            frames = []
-            for c_path, d_path in zip(color_frames, depth_frames):
-                frames.append({'color': c_path, 'depth': d_path})
 
-        else:
-            frames = ['{base_path}/{sequence_path}/{group}/{frame:0{nz}}.{ext}'.format(base_path=self.base_path,
-                      sequence_path=sequence_path, group=group, frame=frame_num, nz=nz, ext=ext)
-                      for frame_num in range(start_frame, end_frame+1)]
+        frames = []
+        for c_path, d_path in zip(color_frames, depth_frames):
+            frames.append({'color': c_path, 'depth': d_path})
 
         # Convert gt
         if ground_truth_rect.shape[1] > 4:
@@ -71,7 +60,7 @@ class DepthTrackDataset(BaseDataset):
 
             ground_truth_rect = np.concatenate((x1, y1, x2-x1, y2-y1), 1)
 
-        return Sequence(sequence_name, frames, 'depthtrack', ground_truth_rect, dtype=self.dtype)
+        return Sequence(sequence_name, frames, 'depthtrack', ground_truth_rect)
 
     def __len__(self):
         return len(self.sequence_list)
