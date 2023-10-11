@@ -9,7 +9,7 @@ pt = "lib.test.evaluation.%sdataset"  # Useful abbreviations to reduce the clutt
 dataset_dict = dict(
     rgbd1k=DatasetInfo(module=pt % "rgbd1k", class_name="RGBD1KDataset", kwargs=dict()),
     cdtb=DatasetInfo(module=pt % "cdtb", class_name="CDTBDDataset", kwargs=dict()),
-    depthtrack=DatasetInfo(module=pt % "depthtrack", class_name="DepthTrackDataset", kwargs=dict(dtype='rgbd'))
+    depthtrack=DatasetInfo(module=pt % "depthtrack", class_name="DepthTrackDataset", kwargs=dict())
 )
 
 
