@@ -41,7 +41,7 @@ lib/train/admin/local.py  # paths about training
 lib/test/evaluation/local.py  # paths about testing
 ```
 ### Training
-Dowmload the pretrained [Stark-s model](https://drive.google.com/drive/folders/142sMjoT5wT6CuRiFT5LLejgr7VLKmaC4)
+Download the pretrained [Stark-s model](https://drive.google.com/drive/folders/142sMjoT5wT6CuRiFT5LLejgr7VLKmaC4)
 and put it under ./pretrained_models/.
 Set the MODEL.PRETRAINED path in ./experiments/spt/rgbd1k.yaml
 
@@ -60,6 +60,7 @@ Edit ./lib/test/evaluation/local.py to set the test set path, then run
 ```
 python ./tracking/test.py
 ```
+You can also use the [trained model](https://drive.google.com/file/d/1qJcMwnRElIo_lSbXialKoa3nua2w2tFX/view?usp=sharing) for test.
 
 ## Acknowledgment
 - This repo is based on [Stark](https://github.com/researchmm/Stark) which is an excellent work.
